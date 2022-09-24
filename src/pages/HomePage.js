@@ -34,6 +34,8 @@ class HomePage extends React.Component {
 		const filteredNotes = this.state.notes.filter((note) =>
 			note.title.toLocaleLowerCase().includes(searchKey)
 		);
+
+		console.log(filteredNotes);
 		return (
 			<section className="Homepage">
 				<SearchBar

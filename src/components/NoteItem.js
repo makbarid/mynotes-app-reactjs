@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import PropTypes from 'prop-types';
 
 function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive }) {
 	return (
@@ -21,5 +22,16 @@ function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive })
 		</li>
 	);
 }
+
+NoteItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    archived: PropTypes.bool.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onArchive: PropTypes.func.isRequired,
+};
+
 
 export default NoteItem;

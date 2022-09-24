@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import PropTypes from 'prop-types';
 
 class AddNote extends React.Component {
 	constructor(props) {
@@ -54,5 +55,12 @@ class AddNote extends React.Component {
 		);
 	}
 }
+
+
+AddNote.propTypes = {
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+	onAddNote: PropTypes.func.isRequired
+};
 
 export default AddNote;

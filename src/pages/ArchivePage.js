@@ -44,7 +44,7 @@ class ArchivePage extends React.Component {
 				<div className="archive-note">
 					<h1>Archive Notes</h1>
 				</div>
-
+				
 				<NoteList
 					notes={filteredNotes}
 					onDelete={this.onDeleteHandler.bind(this)}

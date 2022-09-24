@@ -13,10 +13,10 @@ function Navigation() {
 					<Link to="/">HOME</Link>
 				</li>
 				<li>
-					<Link to="/archive">ARCHIVE</Link>
+					<Link to="/notes/archive">ARCHIVE</Link>
 				</li>
 				<li>
-					<Link to="/add">ADD NOTES</Link>
+					<Link to="/new">ADD NOTES</Link>
 				</li>
 			</ul>
 		</nav>

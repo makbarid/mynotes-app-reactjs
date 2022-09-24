@@ -8,7 +8,7 @@ function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive })
             <div className="note-content">
                 <p className="id">{id}</p>
                 <h3 className="title">
-                    <Link className="title-link" to={`/detail/${id}`}>{title}</Link>
+                    <Link className="title-link" to={`/notes/detail/${id}`}>{title}</Link>
                 </h3>
                 <p className="createdAt">{createdAt}</p>
                 <p className="body">{body}</p>

@@ -44,13 +44,8 @@ class DetailPage extends React.Component {
 	}
 
 	render() {
-		const status = this.state.foundedNote.archived;
 		return (
 			<section className="DetailPage">
-				<div className="detail-title">
-					{status ? <h1>Active Notes</h1> : <h1>Archive Notes</h1>}
-				</div>
-
 				{this.state.foundedNote ? (
 					<NoteDetail
 						{...this.state.foundedNote}

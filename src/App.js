@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
-import ArchivePage from "./pages/ArchivePage";
 import AddPage from "./pages/AddPage";
+import ArchivePage from "./pages/ArchivePage";
 import DetailPage from "./pages/DetailPage";
 import PageNotFound from "./pages/PageNotFound";
 
@@ -14,23 +14,19 @@ function App() {
 			component: <HomePage />,
 		},
 		{
-			path: "/archive",
-			component: <ArchivePage />,
-		},
-		{
-			path: "/add",
+			path: "/new",
 			component: <AddPage />,
 		},
 		{
-			path: "/detail/:id",
+			path: "/notes/archive",
+			component: <ArchivePage />,
+		},
+		{
+			path: "/notes/detail/:id",
 			component: <DetailPage />,
 		},
 		{
 			path: "*",
-			component: <PageNotFound />,
-		},
-		{
-			path: "/detail/*",
 			component: <PageNotFound />,
 		},
 	];
@@ -42,13 +38,6 @@ function App() {
 			</header>
 
 			<main className="main">
-				{/* <Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="/archive" element={<ArchivePage />} />
-					<Route path="/add" element={<AddPage />} />
-					<Route path="/detail/:id" element={<DetailPageWrapper />} />
-					<Route path="*" element={<PageNotFound />} />
-				</Routes> */}
 				<Routes>
 					{route.map(({ path, component }) => {
 						return <Route key={path} path={path} element={component} />;

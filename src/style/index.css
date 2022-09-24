@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+:root {
+  --ff-poppins: 'Poppins', sans-serif;
+
+  --clr-white: hsl(0, 0%, 97%);
+  --clr-light-gray-80: hsl(0, 0%, 80%);
+  --clr-light-gray-70: hsl(0, 0%, 70%);
+  --bg-black: hsl(228,4%,25%);
+
+  --trasition-1: 0.25s ease;
+  --transition-2: 0.3s ease-in;
+
+  --box-shadow-1: 0 2px 5px 0 rgba(0,0,0,0.225);
+  --box-shadow-2: 0 4px 10px 0px rgba(0,0,0,0.225);
+
+  --border1: 1px solid black;
+  --border2: 1px solid red;
+  --border3: 1px solid cyan;
+}
+
+
+/*----- RESET -----*/
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    font: inherit;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+img,
+a,
+i,
+button,
+span {
+    display: block;
+}
+
+html {
+    font-family: var(--ff-poppins);
+}
+
+body {
+  background: var(--clr-white);
+}
+
+input:focus, textarea:focus {
+  outline-color: var(--bg-violet);
+  outline-width: 1px;
+  outline-offset: 1px;
+}
+
+[class*="btn-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 33px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--clr-white);
+  box-shadow: var(--box-shadow-1);
+  transition: var(--trasition-1);
+  background: salmon;
+}
+
+[class*="btn-"]:hover {
+  transform: scale(101%);
+  box-shadow: var(--box-shadow-2);
+  background: red;
+}
+
+
+/*----- APP -----*/
+
+.Navigation {
+  display: flex;
+  padding: 15px 30px;
+}
+
+.nav-list {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 15px;
+}
+
+.App {
+  margin: 25px;
+  border: 1px solid var(--clr-light-gray-80);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.header {
+  border: 1px solid var(--clr-light-gray-80);
+}
+
+.main {
+  padding: 15px 30px;
+}
+
+
+/*----- HOMEPAGE -----*/
+
+.SearchBar {
+  display: flex;
+  justify-content: end;
+}
+
+.SearchBar input {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 3px 14px;
+}
+
+.active-note,
+.archive-note {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.active-note h1,
+.archive-note h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.NoteList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.NoteItem {
+  padding: 10px;
+  border: 1px solid var(--clr-light-gray-70);
+  display: flex;
+  flex-direction: column;
+}
+
+.note-content {
+  margin-bottom: 15px;
+}
+
+.id {
+  display: none;
+}
+
+.NoteItem .title-link {
+  color: blue;
+}
+
+.NoteItem .title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.NoteItem .createdAt {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.NoteItem .body {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.button {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+
+/*----- ADD NOTE PAGE -----*/
+
+.AddPage h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.AddNote {
+  display: grid;
+  justify-content: center;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+  height: 500px;
+}
+
+.add-form input {
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+.add-form textarea {
+  height: 350px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  margin: 10px auto;
+}
+
+
+/*----- DETAILPAGE -----*/
+
+.DetailPage .detail-title {
+  text-align: center;
+}

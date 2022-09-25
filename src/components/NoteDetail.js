@@ -1,20 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { showFormattedDate } from "../utils/index"
+import { MdArrowBack, MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
 import Button from "./Button";
 import PropTypes from "prop-types";
+import parse from 'html-react-parser';
 
 function NoteDetail({ id, title, createdAt, body, archived, onDelete, onArchive }) {
 	return (
 		<div className="NoteDetail">
-            <div className="note-content">
+            <div>
+                <Link className="nav-home-link" to={`/`}><MdArrowBack /></Link>
+            </div>
+            
+            <div className="content">
                 <p className="id">{id}</p>
                 <h3 className="title">{title}</h3>
-                <p className="createdAt">{createdAt}</p>
-                <p className="body">{body}</p>
+                <p className="createdAt">{showFormattedDate(createdAt)}</p>
+                {parse(`<p className="body">${body}</p>`)}
             </div>
 
             <div className="button">
-                <Button type="button" className="btn-delete" btnName="DELETE" onClickBtn={() => onDelete(id)}/>
-                <Button type="button" className="btn-archive" btnName={archived ? "Unarchive" : "Archive"} onClickBtn={() => onArchive(id)}/>
+                <Button type="button" className="btn-delete" btnName={<MdDeleteForever />} onClickBtn={() => onDelete(id)}/>
+                <Button type="button" className={!archived ? "btn-archive" : "btn-unarchive"} btnName={!archived ? <MdArchive /> : <MdUnarchive />} onClickBtn={() => onArchive(id)}/>
             </div>
 		</div>
 	);

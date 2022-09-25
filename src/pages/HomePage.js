@@ -1,7 +1,20 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import NoteList from "../components/NoteList";
 import SearchBar from "../components/SearchBar";
 import { deleteNote, archiveNote, getActiveNotes } from "../utils/local-data";
+
+function HomePageWrapper() {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const keyword = searchParams.get("keyword");
+	function changeSearchParams(keyword) {
+		setSearchParams({ keyword });
+	}
+
+	return (
+		<HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+	);
+}
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -9,24 +22,26 @@ class HomePage extends React.Component {
 
 		this.state = {
 			notes: getActiveNotes(),
-			keyword: "",
+			keyword: props.defaultKeyword || '',
 		};
 	}
 
 	onDeleteHandler(id) {
-		deleteNote(id);
+		const confirm = window.confirm("Delete Note?");
+		confirm ? deleteNote(id) : this.setState({ notes: getActiveNotes() });
 
 		this.setState({ notes: getActiveNotes() });
 	}
 
 	onArchiveHandler(id) {
 		archiveNote(id);
-
 		this.setState({ notes: getActiveNotes() });
+		alert("Note moved to Archive");
 	}
 
-	onKeywordChange(keyword) {
+	onKeywordChangeHandler(keyword) {
 		this.setState({ keyword });
+		this.props.keywordChange(keyword);
 	}
 
 	render() {
@@ -35,17 +50,13 @@ class HomePage extends React.Component {
 			note.title.toLocaleLowerCase().includes(searchKey)
 		);
 
-		console.log(filteredNotes);
 		return (
-			<section className="Homepage">
+			<section className="HomePage">
 				<SearchBar
+					notes={filteredNotes}
 					keyword={this.state.keyword}
-					keywordChange={this.onKeywordChange.bind(this)}
+					keywordChange={this.onKeywordChangeHandler.bind(this)}
 				/>
-
-				<div className="active-note">
-					<h1>Active Notes</h1>
-				</div>
 
 				<NoteList
 					notes={filteredNotes}
@@ -57,4 +68,4 @@ class HomePage extends React.Component {
 	}
 }
 
-export default HomePage;
+export default HomePageWrapper;

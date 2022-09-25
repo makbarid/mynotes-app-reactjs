@@ -8,12 +8,13 @@ function AddPage() {
     
     function onAddNoteHandler({ title, body }) {
         addNote({ title, body })
+        alert("Note Added")
         navigate('/')
     }
 
     return(
         <section className="AddPage">
-            <h2>Add Notes</h2>
+            <h2 className="title">Add Notes</h2>
             <AddNote onAddNote={onAddNoteHandler}/>
         </section>
     )

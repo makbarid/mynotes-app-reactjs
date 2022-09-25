@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function NoteList({ notes, onDelete, onArchive }) {
 	return (
-		<div className="notes">
+		<div className="Notes">
 			{notes.length ? (
 				<ul className="NoteList">
 					{notes.map((note) => (
@@ -18,7 +18,7 @@ function NoteList({ notes, onDelete, onArchive }) {
 					))}
 				</ul>
 			) : (
-				<p>No notes found!</p>
+				<p className="empty-message">No notes found!</p>
 			)}
 		</div>
 	);

@@ -1,7 +1,24 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import NoteList from "../components/NoteList";
 import SearchBar from "../components/SearchBar";
-import { deleteNote, unarchiveNote, getArchivedNotes } from "../utils/local-data";
+import {
+	deleteNote,
+	unarchiveNote,
+	getArchivedNotes,
+} from "../utils/local-data";
+
+function ArchivePageWrapper() {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const keyword = searchParams.get("keyword");
+	function changeSearchParams(keyword) {
+		setSearchParams({ keyword });
+	}
+
+	return (
+		<ArchivePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
+	);
+}
 
 class ArchivePage extends React.Component {
 	constructor(props) {
@@ -9,24 +26,26 @@ class ArchivePage extends React.Component {
 
 		this.state = {
 			notes: getArchivedNotes(),
-			keyword: "",
+			keyword: props.defaultKeyword || '',
 		};
 	}
 
 	onDeleteHandler(id) {
-		deleteNote(id);
+		const confirm = window.confirm("Delete Note?");
+		confirm ? deleteNote(id) : this.setState({ notes: getArchivedNotes() });
 
 		this.setState({ notes: getArchivedNotes() });
 	}
 
 	onArchiveHandler(id) {
-        unarchiveNote(id)
+		unarchiveNote(id);
 
-        this.setState({ notes: getArchivedNotes() });
-    }
+		this.setState({ notes: getArchivedNotes() });
+	}
 
-	onKeywordChange(keyword) {
+	onKeywordChangeHandler(keyword) {
 		this.setState({ keyword });
+		this.props.keywordChange(keyword);
 	}
 
 	render() {
@@ -38,13 +57,9 @@ class ArchivePage extends React.Component {
 			<section className="ArchivePage">
 				<SearchBar
 					keyword={this.state.keyword}
-					keywordChange={this.onKeywordChange.bind(this)}
+					keywordChange={this.onKeywordChangeHandler.bind(this)}
 				/>
 
-				<div className="archive-note">
-					<h1>Archive Notes</h1>
-				</div>
-				
 				<NoteList
 					notes={filteredNotes}
 					onDelete={this.onDeleteHandler.bind(this)}
@@ -55,4 +70,4 @@ class ArchivePage extends React.Component {
 	}
 }
 
-export default ArchivePage;
+export default ArchivePageWrapper;

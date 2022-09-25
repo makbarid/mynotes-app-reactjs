@@ -12,12 +12,12 @@ class AddNote extends React.Component {
 		};
 	}
 
-    onTitleChangeHandler(e) {
-        this.setState({ title: e.target.value })
+    onInputTitleHandler(e) {
+        this.setState({ title: e.target.innerHTML })
     }
 
-    onBodyChangeHandler(e) {
-        this.setState({ body: e.target.value })
+    onInputBodyHandler(e) {
+        this.setState({ body: e.target.innerHTML })
     }
 
     onSubmitHandler(e) {
@@ -29,19 +29,23 @@ class AddNote extends React.Component {
 	render() {
 		return (
 			<div className="AddNote">
-				<form className="add-form">
-					<input
-						type="text"
-						placeholder="Add Title..."
+				<form>
+					<div
+						className="add-input__title"
+						data-placeholder="Add Title..."
 						value={this.state.title}
-						onChange={this.onTitleChangeHandler.bind(this)}
-					/>
+						onInput={this.onInputTitleHandler.bind(this)}
+						contentEditable
+						required
+						/>
 
-					<textarea
+					<div
+						className="add-input__body"
 						type="text"
-						placeholder="Add Descriptions..."
+						data-placeholder="Add Descriptions..."
 						value={this.state.body}
-						onChange={this.onBodyChangeHandler.bind(this)}
+						onInput={this.onInputBodyHandler.bind(this)}
+						contentEditable
 					/>
 
 					<Button

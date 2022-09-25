@@ -26,9 +26,13 @@ class DetailPage extends React.Component {
 	}
 
 	onDeleteHandler(id) {
-		deleteNote(id);
+		const confirm = window.confirm("Delete Note?");
+
+		if(confirm) {
+			deleteNote(id);
+			this.props.navigate("/");
+		}
 		this.setState({ foundedNote: getNote(id) });
-		this.props.navigate("/");
 	}
 
 	onArchiveHandler(id) {
@@ -37,6 +41,7 @@ class DetailPage extends React.Component {
 		if (!status) {
 			archiveNote(id);
 			this.setState({ foundedNote: getNote(id) });
+			alert("Note moved to Archive")
 		} else {
 			unarchiveNote(id);
 			this.setState({ foundedNote: getNote(id) });
@@ -53,7 +58,7 @@ class DetailPage extends React.Component {
 						onArchive={this.onArchiveHandler.bind(this)}
 					/>
 				) : (
-					<p>No notes found!</p>
+					<p className="empty-message">No notes found!</p>
 				)}
 			</section>
 		);

@@ -1,23 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { showFormattedDate } from "../utils/index"
+import { MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
 import Button from "./Button";
 import PropTypes from 'prop-types';
 
 function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive }) {
 	return (
 		<li className="NoteItem">
-            <div className="note-content">
-                <p className="id">{id}</p>
-                <h3 className="title">
-                    <Link className="title-link" to={`/notes/detail/${id}`}>{title}</Link>
-                </h3>
-                <p className="createdAt">{createdAt}</p>
-                <p className="body">{body}</p>
-            </div>
+            <Link to={`/notes/detail/${id}`} className="nav-detail-link" >
+                <div className="content">
+                    <p className="id">{id}</p>
+                    <h3 className="title">{title}</h3>
+                    <p className="createdAt">{showFormattedDate(createdAt)}</p>
+                    <p className="body">{body.length <= 100 ? body : `${body.substring(0, 100)}...`}</p>
+                </div>
+            </Link>
 
             <div className="button">
-                <Button type="button" className="btn-delete" btnName="DELETE" onClickBtn={() => onDelete(id)}/>
-                <Button type="button" className="btn-archive" btnName={archived ? "Unarchive" : "Archive"} onClickBtn={() => onArchive(id)}/>
+                <Button type="button" className="btn-delete" btnName={<MdDeleteForever />} onClickBtn={() => onDelete(id)}/>
+                <Button type="button" className={!archived ? "btn-archive" : "btn-unarchive"} btnName={!archived ? <MdArchive /> : <MdUnarchive />} onClickBtn={() => onArchive(id)}/>
             </div>
 		</li>
 	);

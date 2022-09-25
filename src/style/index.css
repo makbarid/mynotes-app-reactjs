@@ -129,7 +129,15 @@ textarea:focus {
   fill: var(--bg-yellow-2);
 }
 
+@keyframes scaleUp {
+  0% {
+      transform: scale(.5);
+  }
 
+  100% {
+      transform: scale(1);
+  }
+}
 
 /*----- APP -----*/
 
@@ -251,6 +259,7 @@ textarea:focus {
 .ArchiveNote {
   text-align: center;
   margin-bottom: 50px;
+  animation: scaleUp .25s ease forwards;
 }
 
 .ActiveNote .title,
@@ -273,6 +282,7 @@ textarea:focus {
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   height: 100%;
+  animation: scaleUp .25s ease forwards;
 }
 
 .NoteItem {
@@ -284,6 +294,8 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   transition: var(--transition-1);
+  animation: scaleUp .25s ease forwards;
+
 }
 
 .NoteItem:hover {
@@ -323,6 +335,7 @@ textarea:focus {
 /*----- ADD NOTE PAGE -----*/
 .AddPage {
   height: calc(100vh - 200px);
+  animation: scaleUp .25s ease forwards;
 }
 
 .AddPage .title {
@@ -399,6 +412,7 @@ textarea:focus {
   min-height: 500px;
   display: flex;
   flex-direction: column;
+  animation: scaleUp .25s ease forwards;
 }
 
 .NoteDetail .nav-home-link {
@@ -438,6 +452,7 @@ textarea:focus {
   position: relative;
   width: 100%;
   height: calc(100vh - 200px);
+  animation: scaleUp .25s ease forwards;
 }
 
 .PageNotFound .content {

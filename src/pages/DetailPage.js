@@ -1,20 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {
-	getNote,
-	deleteNote,
-	archiveNote,
-	unarchiveNote,
-} from "../utils/local-data";
+import { getNote, deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import NoteDetail from "../components/NoteDetail";
+
 
 function DetailPageWrapper() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
+
 	return <DetailPage id={id} navigate={navigate} />;
 }
+
 
 class DetailPage extends React.Component {
 	constructor(props) {
@@ -24,6 +22,7 @@ class DetailPage extends React.Component {
 			foundedNote: getNote(props.id),
 		};
 	}
+
 
 	onDeleteHandler(id) {
 		const confirm = window.confirm("Delete Note?");
@@ -48,6 +47,7 @@ class DetailPage extends React.Component {
 		}
 	}
 
+
 	render() {
 		return (
 			<section className="DetailPage">
@@ -64,5 +64,6 @@ class DetailPage extends React.Component {
 		);
 	}
 }
+
 
 export default DetailPageWrapper;

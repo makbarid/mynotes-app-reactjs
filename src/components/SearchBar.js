@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 function SearchBar({ notes, keyword, keywordChange }) {
 	return (
 		<div className="HeaderNote">
@@ -26,9 +27,11 @@ function SearchBar({ notes, keyword, keywordChange }) {
 	);
 }
 
+
 SearchBar.propTypes = {
 	keyword: PropTypes.string.isRequired,
 	keywordChange: PropTypes.func.isRequired,
 };
+
 
 export default SearchBar;

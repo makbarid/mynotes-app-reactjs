@@ -2,23 +2,23 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import NoteList from "../components/NoteList";
 import SearchBar from "../components/SearchBar";
-import {
-	deleteNote,
-	unarchiveNote,
-	getArchivedNotes,
-} from "../utils/local-data";
+import { deleteNote, unarchiveNote, getArchivedNotes } from "../utils/local-data";
+
 
 function ArchivePageWrapper() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const keyword = searchParams.get("keyword");
+
 	function changeSearchParams(keyword) {
 		setSearchParams({ keyword });
 	}
+
 
 	return (
 		<ArchivePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
 	);
 }
+
 
 class ArchivePage extends React.Component {
 	constructor(props) {
@@ -26,9 +26,10 @@ class ArchivePage extends React.Component {
 
 		this.state = {
 			notes: getArchivedNotes(),
-			keyword: props.defaultKeyword || '',
+			keyword: props.defaultKeyword || "",
 		};
 	}
+
 
 	onDeleteHandler(id) {
 		const confirm = window.confirm("Delete Note?");
@@ -39,7 +40,6 @@ class ArchivePage extends React.Component {
 
 	onArchiveHandler(id) {
 		unarchiveNote(id);
-
 		this.setState({ notes: getArchivedNotes() });
 	}
 
@@ -53,6 +53,8 @@ class ArchivePage extends React.Component {
 		const filteredNotes = this.state.notes.filter((note) =>
 			note.title.toLocaleLowerCase().includes(searchKey)
 		);
+		
+
 		return (
 			<section className="ArchivePage">
 				<SearchBar
@@ -69,5 +71,6 @@ class ArchivePage extends React.Component {
 		);
 	}
 }
+
 
 export default ArchivePageWrapper;

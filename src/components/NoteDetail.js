@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index"
 import { MdArrowBack, MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
 import Button from "./Button";
+import parse from "html-react-parser";
 import PropTypes from "prop-types";
-import parse from 'html-react-parser';
 
 function NoteDetail({ id, title, createdAt, body, archived, onDelete, onArchive }) {
 	return (
 		<div className="NoteDetail">
             <div>
-                <Link className="nav-home-link" to={`/`}><MdArrowBack /></Link>
+                <Link className="nav-home-link" to={"/"}><MdArrowBack /></Link>
             </div>
             
             <div className="content">

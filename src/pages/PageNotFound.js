@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import thumb from "../assets/404-icon.svg"
+import thumb from "../assets/404-icon.svg";
+
 
 const PageNotFound = () => {
 	return (
@@ -22,6 +23,7 @@ const PageNotFound = () => {
 
 		</section>
 	);
-};
+}
+
 
 export default PageNotFound;

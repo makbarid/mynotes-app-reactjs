@@ -4,17 +4,21 @@ import NoteList from "../components/NoteList";
 import SearchBar from "../components/SearchBar";
 import { deleteNote, archiveNote, getActiveNotes } from "../utils/local-data";
 
+
 function HomePageWrapper() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const keyword = searchParams.get("keyword");
+	
 	function changeSearchParams(keyword) {
 		setSearchParams({ keyword });
 	}
 
+	
 	return (
 		<HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
 	);
 }
+
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -22,12 +26,13 @@ class HomePage extends React.Component {
 
 		this.state = {
 			notes: getActiveNotes(),
-			keyword: props.defaultKeyword || '',
+			keyword: props.defaultKeyword || "",
 		};
 	}
 
+
 	onDeleteHandler(id) {
-		const confirm = window.confirm("Delete Note?");
+		const confirm = window.confirm("Delete Note ?");
 		confirm ? deleteNote(id) : this.setState({ notes: getActiveNotes() });
 
 		this.setState({ notes: getActiveNotes() });
@@ -50,6 +55,7 @@ class HomePage extends React.Component {
 			note.title.toLocaleLowerCase().includes(searchKey)
 		);
 
+
 		return (
 			<section className="HomePage">
 				<SearchBar
@@ -67,5 +73,6 @@ class HomePage extends React.Component {
 		);
 	}
 }
+
 
 export default HomePageWrapper;

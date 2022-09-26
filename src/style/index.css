@@ -128,7 +128,7 @@ textarea:focus {
 .App {
   min-height: calc(100vh - 100px);
   margin: 50px;
-  border-radius: 20px;
+  border-radius: 30px;
   overflow: hidden;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.3);
 }
@@ -198,7 +198,7 @@ textarea:focus {
 }
 
 .main {
-  min-height: calc(100vh - 169px);
+  min-height: calc(100vh - 165px);
   padding: 15px 30px;
   background: rgba(255, 255, 255, 0.658);
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -220,6 +220,7 @@ textarea:focus {
   position: absolute;
   top: 0;
   right: 0;
+  animation: scaleUp .25s ease forwards;
 }
 
 .SearchBar input {
@@ -253,6 +254,7 @@ textarea:focus {
 
 .Notes {
   height: 100%;
+  animation: scaleUp .25s ease forwards;
 }
 
 .empty-message {
@@ -277,7 +279,6 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   transition: var(--transition-1);
-  animation: scaleUp .25s ease forwards;
 }
 
 .NoteItem:hover {

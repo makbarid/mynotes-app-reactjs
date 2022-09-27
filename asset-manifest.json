@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mynotes-app-reactjs/static/css/main.335ceccc.css",
+    "main.js": "/mynotes-app-reactjs/static/js/main.a5a5861e.js",
+    "static/media/background.jpg": "/mynotes-app-reactjs/static/media/background.c6e1def25204ea013c89.jpg",
+    "static/media/404-icon.svg": "/mynotes-app-reactjs/static/media/404-icon.026fc4d88a281a0e450f54f5ce45bf43.svg",
+    "index.html": "/mynotes-app-reactjs/index.html",
+    "main.335ceccc.css.map": "/mynotes-app-reactjs/static/css/main.335ceccc.css.map",
+    "main.a5a5861e.js.map": "/mynotes-app-reactjs/static/js/main.a5a5861e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.335ceccc.css",
+    "static/js/main.a5a5861e.js"
+  ]
+}

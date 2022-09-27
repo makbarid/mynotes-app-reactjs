@@ -68,7 +68,7 @@ function addNote({ title, body }) {
 		{
 			id: `notes-${+new Date()}`,
 			title: title || "(untitled)",
-			body,
+			body: body || "",
 			createdAt: new Date().toISOString(),
 			archived: false,
 		},
@@ -101,8 +101,8 @@ function unarchiveNote(id) {
 
 function editNote({ id, title, body }) {
 	const noteToEdit = notes.find((note) => note.id === id);
-	noteToEdit.title = title;
-	noteToEdit.body = body;
+	noteToEdit.title = title || noteToEdit.title;
+	noteToEdit.body = body || noteToEdit.body;
 
 	notes = notes.map((note) => {
 		if (note.id === id) {

@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index"
-import { MdArrowBack, MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
+import { MdArrowBack, MdEditNote, MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
 import Button from "./Button";
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
 
-function NoteDetail({ id, title, createdAt, body, archived, onDelete, onArchive }) {
+
+function NoteDetail({ id, title, createdAt, body, archived, onEdit, onDelete, onArchive }) {
 	return (
 		<div className="NoteDetail">
             <div>
@@ -21,6 +22,7 @@ function NoteDetail({ id, title, createdAt, body, archived, onDelete, onArchive 
             </div>
 
             <div className="button">
+                <Button type="button" className="btn-edit" btnName={<MdEditNote />} onClickBtn={() => onEdit(id)}/>
                 <Button type="button" className="btn-delete" btnName={<MdDeleteForever />} onClickBtn={() => onDelete(id)}/>
                 <Button type="button" className={!archived ? "btn-archive" : "btn-unarchive"} btnName={!archived ? <MdArchive /> : <MdUnarchive />} onClickBtn={() => onArchive(id)}/>
             </div>
@@ -28,12 +30,14 @@ function NoteDetail({ id, title, createdAt, body, archived, onDelete, onArchive 
 	);
 }
 
+
 NoteDetail.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    body: PropTypes.string,
     archived: PropTypes.bool.isRequired,
+    onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired,
 };

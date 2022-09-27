@@ -1,46 +1,47 @@
 import React from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { MdArrowBack, MdNoteAdd } from "react-icons/md";
+import { MdArrowBack, MdEditNote } from "react-icons/md";
 import PropTypes from 'prop-types';
 
 
-class AddNote extends React.Component {
+class EditNote extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			title: "",
-			body: "",
+			title: this.props.notes.title,
+			body: this.props.notes.body,
 			limit: 30,
 		};
 	}
+	
 
 
     onInputTitleHandler(e) {
 		const limit = this.state.limit;
-
+		
 		if(e.target.value.length >= limit) {
 			window.alert(`The title may not be longer than ${limit} characters.`)
 		}
 
         this.setState({ title: e.target.value })
     }
-
-    onInputBodyHandler(e) {
-        this.setState({ body: e.target.innerHTML })
-    }
-
-    onSubmitHandler(e) {
-        e.preventDefault();
-
-        this.props.onAddNote(this.state)
-    }
-
 	
+    onInputBodyHandler(e) {
+		this.setState({ body: e.target.value })
+    }
+	
+    onSubmitHandler(e) {
+		e.preventDefault();
+		
+        this.props.onEditNote(this.state)
+    }
+
+    
 	render() {
 		return (
-			<div className="AddNote">
+			<div className="EditNote">
 
 				<Link className="nav-home-link" to={"/"}>
 					<MdArrowBack />
@@ -49,6 +50,7 @@ class AddNote extends React.Component {
 				<form>
 					<label className="title-label">Title</label>
 					<input 
+						type="text"
 						className="add-input__title"
 						value={this.state.title}
 						onChange={this.onInputTitleHandler.bind(this)}
@@ -56,19 +58,17 @@ class AddNote extends React.Component {
 					/>
 
 					<label className="body-label">Descriptions</label>
-					<div
-						className="add-input__body"
+					<textarea 
 						type="text"
-						data-placeholder="Add Descriptions..."
+						className="add-input__body"
 						value={this.state.body}
-						onInput={this.onInputBodyHandler.bind(this)}
-						contentEditable
+						onChange={this.onInputBodyHandler.bind(this)}
 					/>
 
 					<Button
 						type="submit"
-						className="btn-submit-add"
-						btnName={<MdNoteAdd />}
+						className="btn-submit-edit"
+						btnName={<MdEditNote />}
 						onClickBtn={this.onSubmitHandler.bind(this)}
 					/>
 				</form>
@@ -79,10 +79,10 @@ class AddNote extends React.Component {
 }
 
 
-AddNote.propTypes = {
-    title: PropTypes.string,
+EditNote.propTypes = {
+	title: PropTypes.string,
     body: PropTypes.string,
-	onAddNote: PropTypes.func.isRequired,
+	onEditNote: PropTypes.func.isRequired
 };
 
-export default AddNote;
+export default EditNote;

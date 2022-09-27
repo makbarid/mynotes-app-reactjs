@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdHome, MdDescription, MdOutlineAdd } from "react-icons/md";
 
+
 function Navigation() {
 	return (
 		<nav className="Navigation">
+
 			<div className="nav-brand">
 				<Link to="/">
 					<h1>My Notes</h1>
@@ -31,6 +33,7 @@ function Navigation() {
 					</li>
 				</Link>
 			</div>
+
 		</nav>
 	);
 }

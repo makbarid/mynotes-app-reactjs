@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { showFormattedDate } from "../utils/index"
 import { MdDeleteForever, MdArchive, MdUnarchive } from "react-icons/md";
+import parse from "html-react-parser";
 import Button from "./Button";
 import PropTypes from 'prop-types';
+
 
 function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive }) {
 	return (
@@ -13,7 +15,8 @@ function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive })
                     <p className="id">{id}</p>
                     <h3 className="title">{title}</h3>
                     <p className="createdAt">{showFormattedDate(createdAt)}</p>
-                    <p className="body">{body.length <= 100 ? body : `${body.substring(0, 100)}...`}</p>
+                    {parse(`<p className="body">${body}</p>`)}
+                    <p className="read-more">{body.length >= 150 ? "Read more..." : ""}</p>
                 </div>
             </Link>
 
@@ -25,11 +28,12 @@ function NoteItem({ id, title, createdAt, body, archived, onDelete, onArchive })
 	);
 }
 
+
 NoteItem.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    body: PropTypes.string,
     createdAt: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
     archived: PropTypes.bool.isRequired,
     onDelete: PropTypes.func.isRequired,
     onArchive: PropTypes.func.isRequired,

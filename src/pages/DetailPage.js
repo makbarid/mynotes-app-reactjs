@@ -24,6 +24,10 @@ class DetailPage extends React.Component {
 	}
 
 
+	onEditHandler(id) {
+		this.props.navigate(`/notes/detail/edit/${id}`);
+	}
+
 	onDeleteHandler(id) {
 		const confirm = window.confirm("Delete Note?");
 
@@ -54,6 +58,7 @@ class DetailPage extends React.Component {
 				{this.state.foundedNote ? (
 					<NoteDetail
 						{...this.state.foundedNote}
+						onEdit={this.onEditHandler.bind(this)}
 						onDelete={this.onDeleteHandler.bind(this)}
 						onArchive={this.onArchiveHandler.bind(this)}
 					/>

@@ -3,9 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import HomePage from "./pages/HomePage";
 import AddPage from "./pages/AddPage";
+import EditPage from "./pages/EditPage";
 import ArchivePage from "./pages/ArchivePage";
 import DetailPage from "./pages/DetailPage";
 import PageNotFound from "./pages/PageNotFound";
+
 
 function App() {
 	const route = [
@@ -16,6 +18,10 @@ function App() {
 		{
 			path: "/new",
 			component: <AddPage />,
+		},
+		{
+			path: "/notes/detail/edit/:id",
+			component: <EditPage />,
 		},
 		{
 			path: "/notes/archive",
@@ -30,6 +36,7 @@ function App() {
 			component: <PageNotFound />,
 		},
 	];
+
 
 	return (
 		<div className="App">
@@ -47,5 +54,6 @@ function App() {
 		</div>
 	);
 }
+
 
 export default App;
